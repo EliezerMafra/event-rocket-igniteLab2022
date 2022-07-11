@@ -16,33 +16,56 @@ export function Lesson(props: LessonProps){
         locale: ptBR,
     })
     return(
-        <Link to={`/event/lesson/${props.slug}`} className="group">
-            <span className="text-grey-300">
-                {availableDateFormatted}
-            </span>
+    <>
+        {isLessonAvailable?(
+            <Link to={`/event/lesson/${props.slug}`} className="group">
+                <span className="text-grey-300">
+                    {availableDateFormatted}
+                </span>
 
-            <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
-                <header className="flex items-center justify-between">
-                    {isLessonAvailable ? (
-                        <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
-                            <CheckCircle size={20}/> 
-                            Conteúdo liberado
+                <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
+                    <header className="flex items-center justify-between">
+                            <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
+                                <CheckCircle size={20}/> 
+                                Conteúdo liberado
+                            </span>
+                        <span className="text-xs rounded px-2 py-[0.125rem] text-white border border-green-300 font-bold">
+                            {props.type === 'live' ? 'AO VIVO' : 'AULA PRÁTICA'}
                         </span>
-                    ):(
-                        <span className="text-sm text-orange-500 font-medium flex items-center gap-2">
-                            <Lock size={20}/>
-                            Em breve
-                        </span>
-                    )}
-                    <span className="text-xs rounded px-2 py-[0.125rem] text-white border border-green-300 font-bold">
-                        {props.type === 'live' ? 'AO VIVO' : 'AULA PRÁTICA'}
-                    </span>
-                </header>
+                    </header>
 
-                <strong className="text-gray-200 mt-5 block">
-                    {props.title}
-                </strong>
+                    <strong className="text-gray-200 mt-5 block">
+                        {props.title}
+                    </strong>
+                </div>
+            </Link>
+        ):(
+            <div className="group">
+                <span className="text-grey-300">
+                    {availableDateFormatted}
+                </span>
+
+                <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
+                    <header className="flex items-center justify-between">
+                            <span className="text-sm text-orange-500 font-medium flex items-center gap-2">
+                                <Lock size={20}/>
+                                Em breve
+                            </span>
+                        <span className="text-xs rounded px-2 py-[0.125rem] text-white border border-green-300 font-bold">
+                            {props.type === 'live' ? 'AO VIVO' : 'AULA PRÁTICA'}
+                        </span>
+                    </header>
+
+                    <strong className="text-gray-200 mt-5 block">
+                        {props.title}
+                    </strong>
+                </div>
             </div>
-        </Link>
+        )
+        
+        }
+        
+    </>
+        
     )
 }
