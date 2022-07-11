@@ -15,12 +15,12 @@ export function Lesson(props: LessonProps){
         locale: ptBR,
     })
     return(
-        <a href="#">
+        <a href="#" className="group">
             <span className="text-grey-300">
                 {availableDateFormatted}
             </span>
 
-            <div className="rounded border border-gray-500 p-4 mt-2">
+            <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
                 <header className="flex items-center justify-between">
                     {isLessonAvailable ? (
                         <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
